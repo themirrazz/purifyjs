@@ -1,4 +1,4 @@
-// Purify v1.0.0
+// Purify.js - v1.0.0 - GPL3
 // (c) themirrazzkun 2025+
 var purify = {
     icra: {
@@ -513,3 +513,7 @@ var purify = {
         return out;
     }
 };
+
+if(typeof module != 'undefined') {
+    module.exports = purify;
+}
