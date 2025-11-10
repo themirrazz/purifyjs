@@ -20,3 +20,7 @@ I'm planning on making a documentation for it ~~soon~~ eventually.
 
 ## Where can I use purify.js?
 purify.js currently works in browsers as well as Node.JS. There's also a callable version that's minified and lets you put it into a single variable. (This is useful if you're in a limited environment, i.e. Windows 96, or just don't wanna pollute the global scope.) purify.js was also designed to be ES3-compliant, so *in theory* it should run perfectly fine on IE5+ (this has not been tested yet, I look forward to testing it ~~soon~~ eventually).
+
+
+## Credits
+Thanks to https://256stuff.com/gray/docs/pics/icra.htm for documenting it all for me!
