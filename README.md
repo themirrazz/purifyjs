@@ -23,4 +23,4 @@ purify.js currently works in browsers as well as Node.JS. There's also a callabl
 
 
 ## Credits
-Thanks to https://256stuff.com/gray/docs/pics/icra.htm for documenting it all for me!
+Thanks to https://256stuff.com/gray/docs/pics/ for documenting it all for me!
