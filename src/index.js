@@ -1,4 +1,4 @@
-// Purify.js - v1.0.3 - GPL3
+// Purify.js - v1.0.4 - GPL3
 // (c) themirrazzkun 2025+
 var purify = {
     icra: {
@@ -234,6 +234,7 @@ var purify = {
                 }
                 if(nextEqualsComment) {
                     comment = lexed[i].value;
+                    nextEqualsComment = false;
                 }
             } else if(lexed[i].type === 'RATING') {
                 rating = {

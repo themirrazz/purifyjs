@@ -1,4 +1,4 @@
-// Purifyjs (Typings) - v1.0.3 - GPL3
+// Purifyjs (Typings) - v1.0.4 - GPL3
 // (c) themirrazzkun 2025+
 import { RSACRating, ICRARating, PICSRatingDetails, PICSRatingNamespace, PICSLexarToken } from './types';
 
