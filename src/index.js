@@ -1,4 +1,4 @@
-// Purify.js - v1.0.0 - GPL3
+// Purify.js - v1.0.1 - GPL3
 // (c) themirrazzkun 2025+
 var purify = {
     icra: {
