@@ -300,7 +300,8 @@ var purify = {
                 } else if(c === '"') {
                     if(!cp) {
                         throw new SyntaxError("Unexpected EOL at line 1, column " + (i+1));
-                    } else if(cp !== ' ') {
+                    } else if(cp !== ' ' && cp !== '
+') {
                         throw new SyntaxError("Unexpected token \"" + cp + "\" at line 1, column " + (i+1));
                     } else {
                         if(inComment) {
@@ -331,7 +332,8 @@ var purify = {
                 if(c === ')') {
                     if(!cp) {
                         throw new SyntaxError("Unexpected EOL at line 1, column " + (i+1));
-                    } else if(cp !== ' ') {
+                    } else if(cp !== ' ' && cp !== '
+') {
                         if(cp === ')') {
                             if(cpp) {
                                 throw new SyntaxError("Unexpected token \"" + cpp + "\" at line 1, column " + (i+ 2));
