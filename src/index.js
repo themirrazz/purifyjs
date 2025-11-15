@@ -397,8 +397,8 @@ var purify = {
                         } else if(isRightBeforeRating) {
                             throw new TypeError("Expected rating literal, but got unknown value at line 1, column " + (i - tok.length));
                         } else if(isRightBeforeGen) {
-                            if(tok !== 'gen') {
-                                throw new SyntaxError("Expected keyword \"gen\", but got invalid token at line 1, column " + (i - tok.length));
+                            if(tok !== 'gen' && tok !== 'generic') {
+                                throw new SyntaxError("Expected keyword \"gen\" (or \"generic\"), but got invalid token at line 1, column " + (i - tok.length));
                             }
                             isInGen = true;
                             out.push({
@@ -407,7 +407,7 @@ var purify = {
                                 end: i
                             });
                         } else {
-                            if(tok === 'l') {
+                            if(tok === 'l' || tok === 'labels) {
                                 isRightBeforeGen = true;
                                 out.push({
                                     type: "KEYWORD",
@@ -431,7 +431,7 @@ var purify = {
                                     value: tok,
                                     end: i
                                 });
-                            } else if(tok === 'r') {
+                            } else if(tok === 'r' || tok === 'ratings') {
                                 if(didGen && !didFor) {
                                     throw new SyntaxError("Attempted to declare the \"r\" field when the \"for\" field has not yet been declared at line 1, column " + (i - tok.length));
                                 }
