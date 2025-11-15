@@ -8,7 +8,7 @@ var purify = {
          * @param {number} index 
          * @returns {ICRARating}
          */
-        decode: function (set, index) {
+        decode: function (set, index, strictMode) {
             var pairs = set.split(" ");
             var alpha = 'abcdefghijklmnopq';
             var table = {
@@ -123,28 +123,33 @@ var purify = {
                 var key = pairs[i];
                 var value = pairs[i + 1];
                 if(!prefixs[key.charAt(0)]) {
-                    throw TypeError("Invalid ICRA key " + key + " at line 1, column " + index);
-                }
-                if('zrsti'.indexOf(key.charAt(1)) < 0) {
-                    if(!table[key.charAt(0)][alpha.indexOf(key.charAt(1))]) {
+                    if(strictMode) {
                         throw TypeError("Invalid ICRA key " + key + " at line 1, column " + index);
                     }
-                }
-                if(value !== '1') {
-                    throw TypeError("ICRA value must be 1 at line 1, column " + index);
-                }
-                if(key.charAt(1) === 'z') {
-                    results[prefixs[key.charAt(0)]]["none"] = true;
-                } else if(key.charAt(1) === 'r') {
-                    results[prefixs[key.charAt(0)]]["artistic"] = true;
-                } else if(key.charAt(1) === 's') {
-                    results[prefixs[key.charAt(0)]]["educational"] = true;
-                } else if(key.charAt(1) === 't') {
-                    results[prefixs[key.charAt(0)]]["medical"] = true;
-                } else if(key.charAt(1) === 'u') {
-                    results[prefixs[key.charAt(0)]]["sports"] = true;
                 } else {
-                    results[prefixs[key.charAt(0)]][table[key.charAt(0)][alpha.indexOf(key.charAt(1))]] = true;
+                    if('zrsti'.indexOf(key.charAt(1)) < 0 && !table[key.charAt(0)][alpha.indexOf(key.charAt(1))]) {
+                        if(strictMode) {
+                            throw TypeError("Invalid ICRA key " + key + " at line 1, column " + index);
+                        }
+                    } else if(value !== '1') {
+                        if(strictMode) {
+                            throw TypeError("ICRA value must be 1 at line 1, column " + index);
+                        }
+                    } else {
+                        if(key.charAt(1) === 'z') {
+                            results[prefixs[key.charAt(0)]]["none"] = true;
+                        } else if(key.charAt(1) === 'r') {
+                            results[prefixs[key.charAt(0)]]["artistic"] = true;
+                        } else if(key.charAt(1) === 's') {
+                            results[prefixs[key.charAt(0)]]["educational"] = true;
+                        } else if(key.charAt(1) === 't') {
+                            results[prefixs[key.charAt(0)]]["medical"] = true;
+                        } else if(key.charAt(1) === 'u') {
+                            results[prefixs[key.charAt(0)]]["sports"] = true;
+                        } else {
+                            results[prefixs[key.charAt(0)]][table[key.charAt(0)][alpha.indexOf(key.charAt(1))]] = true;
+                        }
+                    }
                 }
             }
             return results;
@@ -157,7 +162,7 @@ var purify = {
          * @param {number} index 
          * @returns {RSACRating}
          */
-        decode: function (set, index) {
+        decode: function (set, index, strictMode) {
             var pairs = set.split(' ');
             var levels = {
                 nudity: 0,
@@ -300,8 +305,7 @@ var purify = {
                 } else if(c === '"') {
                     if(!cp) {
                         throw new SyntaxError("Unexpected EOL at line 1, column " + (i+1));
-                    } else if(cp !== ' ' && cp !== '
-') {
+                    } else if(cp !== ' ' && cp !== '\n') {
                         throw new SyntaxError("Unexpected token \"" + cp + "\" at line 1, column " + (i+1));
                     } else {
                         if(inComment) {
@@ -332,8 +336,7 @@ var purify = {
                 if(c === ')') {
                     if(!cp) {
                         throw new SyntaxError("Unexpected EOL at line 1, column " + (i+1));
-                    } else if(cp !== ' ' && cp !== '
-') {
+                    } else if(cp !== ' ' && cp !== '\n') {
                         if(cp === ')') {
                             if(cpp) {
                                 throw new SyntaxError("Unexpected token \"" + cpp + "\" at line 1, column " + (i+ 2));
@@ -409,7 +412,7 @@ var purify = {
                                 end: i
                             });
                         } else {
-                            if(tok === 'l' || tok === 'labels) {
+                            if(tok === 'l' || tok === 'labels') {
                                 isRightBeforeGen = true;
                                 out.push({
                                     type: "KEYWORD",
