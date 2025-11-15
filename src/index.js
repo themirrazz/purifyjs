@@ -1,4 +1,4 @@
-// Purify.js - v1.0.1 - GPL3
+// Purify.js - v1.0.3 - GPL3
 // (c) themirrazzkun 2025+
 var purify = {
     icra: {
@@ -374,7 +374,7 @@ var purify = {
                     tok += c;
                 }
             } else {
-                if(c === ' ') {
+                if(c === ' ' || c === '\n' || c === '\t' || c === '\r') {
                     if(tok) {
                         if(isInGen) {
                             if(tok !== 'true' && tok !== 'false') {
