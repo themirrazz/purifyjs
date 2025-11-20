@@ -112,8 +112,19 @@ export declare interface PICSRatingDetails {
     comment?: string,
     data: string,
     rating?: ICRARating|RSACRating,
-    parseError?: SyntaxError|ReferenceError|TypeError|Error
+    parseError?: SyntaxError|ReferenceError|TypeError|Error|PurifyError,
+    errors: PurifyError[]
 };
+
+export declare interface PurifyError {
+    name: string,
+    message: string,
+    code: string,
+    stackTrace?: {
+        start?: number,
+        end?: number
+    }
+}
 
 export declare type PICSLexarTokenType = 'STRING_START'|'STRING_LITERAL'|'STRING_TERMINATOR'|'RATING_START'|'RATING'|'RATING_TERMINATOR'|'BOOLEAN'|'KEYWORD'|'LINE_TERMINATOR';
 

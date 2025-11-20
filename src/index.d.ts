@@ -1,6 +1,6 @@
 // Purifyjs (Typings) - v1.0.4 - GPL3
 // (c) themirrazzkun 2025+
-import { RSACRating, ICRARating, PICSRatingDetails, PICSRatingNamespace, PICSLexarToken } from './types';
+import { PurifyError, RSACRating, ICRARating, PICSRatingDetails, PICSRatingNamespace, PICSLexarToken } from './types';
 
 export let purify: {
     icra: {
